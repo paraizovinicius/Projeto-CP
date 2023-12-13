@@ -14,11 +14,14 @@ public class KeyHandler implements KeyListener {
         int code = e.getKeyCode();
         if(code == KeyEvent.VK_W) {
             acenar = true;
+            System.out.println("ACENAR  ");
         }
         if(code == KeyEvent.VK_D) {
+            dancar = true;
             System.out.println("DANÇAR  ");
         }
         if(code == KeyEvent.VK_DOWN) {
+            sentar = true;
             System.out.println("SENTAR  ");
         }
     }
