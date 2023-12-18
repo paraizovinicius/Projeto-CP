@@ -5,6 +5,7 @@ public class MouseHandler implements MouseListener {
     public int CoordX;
     public int CoordY;
     public boolean isClicked = false;
+    public boolean isEntered = false;
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -22,11 +23,15 @@ public class MouseHandler implements MouseListener {
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(MouseEvent e) { // Mouse passando na tela do jogo
+        isEntered = true;
+        CoordX = e.getX();
+        CoordY = e.getY();
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        isEntered = false;
     }
 
 }
