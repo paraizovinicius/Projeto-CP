@@ -1,12 +1,12 @@
+package Main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
-import java.lang.Math;
+
+import levels.levelHandler;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -23,6 +23,7 @@ public class GamePanel extends JPanel implements Runnable {
     MouseMotionHandler mouseMotion = new MouseMotionHandler();
     Player player = new Player(700, 350, mouse, mouseMotion);
     Thread gameThread;
+    private levelHandler levelHandler = new levelHandler(this);
 
     public GamePanel() {
 
@@ -69,6 +70,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
 
         player.update();
+        levelHandler.update();
     }
 
     public void paintComponent(Graphics g) {
@@ -78,6 +80,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g; // transformar essa variável em Graphics2D, que é melhor
 
         player.draw(g2);
+        levelHandler.draw(g2);
 
         g2.dispose();
 
