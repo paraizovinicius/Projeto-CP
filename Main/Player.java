@@ -1,20 +1,19 @@
 package Main;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
+import java.util.logging.Level;
+
+import levels.LevelHandler;
+import levels.LoadSave;
 
 public class Player {
     public int index_X, index_Y;
-    public BufferedImage sul1, sul2, sudeste1, sudeste2, leste1, leste2, nordeste1, nordeste2, norte1,
-            norte2, noroeste1, noroeste2, oeste1, oeste2, sudoeste1, sudoeste2;
     MouseHandler mouse;
     MouseMotionHandler mouseMotion;
+    GamePanel gamepanel;
     boolean moving = false;
     int spriteCounter = 0;
     int spriteNum = 1;
-    public String path = "C:\\Users\\parai\\Documents\\Projeto Club Penguin\\Projeto-CP\\images";
 
     // Player's settings
     int playerSpeed = 10;
@@ -23,23 +22,26 @@ public class Player {
     int playerHeight = 72;
     String direction = "sul";
 
-    public Player(int index_X, int index_Y, MouseHandler mouse, MouseMotionHandler mouseMotion) {
+    public Player(int index_X, int index_Y, MouseHandler mouse, MouseMotionHandler mouseMotion, GamePanel gamepanel) {
         this.index_X = index_X;
         this.index_Y = index_Y;
         this.mouse = mouse;
         this.mouseMotion = mouseMotion;
+        this.gamepanel = gamepanel;
     }
 
-    
     public void update() {
-        if (velocity[0] != 0 || velocity[1] != 0) {
+
+        adjustLevel();
+
+        if (velocity[0] != 0 || velocity[1] != 0) { // ajuste da boolean moving
             moving = true;
         } else {
             moving = false;
         }
 
-        try {
-            if(moving == false && mouse.isEntered == true){
+        try { // Mouse Motion do pinguim (ele olha pro mouse)
+            if (moving == false && mouse.isEntered == true) {
                 direction = witchDirectionIsPlayerMoving(mouseMotion.coordXmouseMotion, mouseMotion.coordYmouseMotion);
             }
         } catch (Exception e) {
@@ -83,9 +85,295 @@ public class Player {
                 spriteNum = 6;
             } else if (spriteNum == 6) {
                 spriteNum = 1;
-            } 
+            }
 
             spriteCounter = 0;
+        }
+    }
+
+    public void adjustLevel() {
+        if (index_X > 1200 && LevelHandler.getLevel() == 1) {
+            LevelHandler.setLevel(2); // Snowfort
+            index_X = 709;
+            index_Y = 450;
+            velocity[0] = 0;
+            velocity[1] = 0;
+
+        }
+        if (index_X < 200 && LevelHandler.getLevel() == 2) {
+            LevelHandler.setLevel(1); // Downtown
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        } 
+        if(index_X > 1200 && LevelHandler.getLevel() == 2){
+            LevelHandler.setLevel(3); // Plaza
+            index_X = 709;
+            index_Y = 560;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(index_X < 200 && LevelHandler.getLevel() == 3){
+            LevelHandler.setLevel(2); // Snowfort
+            index_X = 709;
+            index_Y = 450;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(index_X > 1200 && LevelHandler.getLevel() == 3){
+            LevelHandler.setLevel(4); // Forest
+            index_X = 709;
+            index_Y = 560;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(index_X > 1186 && index_Y > 648 && LevelHandler.getLevel() == 4){
+            LevelHandler.setLevel(5); // Cove
+            index_X = 709;
+            index_Y = 560;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(index_X > 1139 && index_Y < 312 && LevelHandler.getLevel() == 4){
+            LevelHandler.setLevel(6); // Mine Shack
+            index_X = 709;
+            index_Y = 560;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(index_Y < 244 && LevelHandler.getLevel() == 5){
+            LevelHandler.setLevel(4); // Forest
+            index_X = 709;
+            index_Y = 560;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(index_Y > 750 && LevelHandler.getLevel() == 6){
+            LevelHandler.setLevel(4); // Forest
+            index_X = 709;
+            index_Y = 560;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(index_X < 107 && index_Y < 293 && LevelHandler.getLevel() == 4){
+            LevelHandler.setLevel(3); // Plaza
+            index_X = 709;
+            index_Y = 560;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(index_X < 215 && LevelHandler.getLevel() == 1){
+            LevelHandler.setLevel(7); // Dock
+            index_X = 709;
+            index_Y = 560;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(index_X > 1200 && LevelHandler.getLevel() == 7){
+            LevelHandler.setLevel(1); // Downtown
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(index_X < 120 && LevelHandler.getLevel() == 7){
+            LevelHandler.setLevel(8); // Beach
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(index_X>1152 && index_Y<426 && index_Y>332 && LevelHandler.getLevel() == 8){
+            LevelHandler.setLevel(7); // Dock
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(index_X>319 && index_X < 565 && index_Y< 296 && LevelHandler.getLevel() == 7){
+            LevelHandler.setLevel(9); // Ski Village
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(index_X > 227 && index_X < 514 && index_Y > 732 && LevelHandler.getLevel() == 9){
+            LevelHandler.setLevel(7); // Dock
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(index_X < 385 && index_Y < 538 && LevelHandler.getLevel() == 9){
+            LevelHandler.setLevel(10); // Ski Hill
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if((index_X > 835 && index_Y < 267) || (index_X> 762 && index_Y < 248) && LevelHandler.getLevel() == 10){
+            LevelHandler.setLevel(9); // Ski Village
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+
+        if(((index_X > 402 && index_X < 604)&&(index_Y < 350)) && LevelHandler.getLevel() == 2){
+            LevelHandler.setLevel(17); // Ski Lodge
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+
+        if(((index_X>693 && index_X < 766)&&(index_Y<190)) && LevelHandler.getLevel() == 17){
+            LevelHandler.setLevel(2); // Snowfort
+            index_X = 709;
+            index_Y = 450;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+
+        // INSIDES
+
+        if(((index_X>481 && index_X<543)&& (index_Y<437)) &&LevelHandler.getLevel() == 1){
+            LevelHandler.setLevel(13); // Coffee Shop
+            index_X = 531;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+
+        if(((index_X>698 && index_X<764)&& (index_Y<370)) &&LevelHandler.getLevel() == 13){
+            LevelHandler.setLevel(1); // Downtown
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+
+        if(((index_X>606 && index_X<691)&& (index_Y<400)) &&LevelHandler.getLevel() == 1){
+            LevelHandler.setLevel(12); // Night Club
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+
+        if(((index_Y>460 && index_Y<564)&& (index_X<210)) &&LevelHandler.getLevel() == 12){
+            LevelHandler.setLevel(1); // Downtown
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+
+        if(((index_X>955 && index_X<1004)&& (index_Y<452)) &&LevelHandler.getLevel() == 1){
+            LevelHandler.setLevel(16); // Gift Shop
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0; 
+        }
+
+        if(((index_X>960 && index_X<1110)&& (index_Y<448)) &&LevelHandler.getLevel() == 16){
+            LevelHandler.setLevel(1); // Downtown
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0; 
+        }
+
+        if(((index_X>288 & index_X < 371) && (index_Y<517))&& LevelHandler.getLevel() == 3){
+            LevelHandler.setLevel(19); // PetShop
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+
+        if(((index_X>608 & index_X < 939) && (index_Y<384))&& LevelHandler.getLevel() == 19){
+            LevelHandler.setLevel(3); // Plaza
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+
+        if((((index_X>653 && index_X<739)||(index_X>858 && index_X<944)) && (index_Y<448)) && LevelHandler.getLevel() == 3){
+            LevelHandler.setLevel(18); // Stage
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0; 
+        }
+        if(((index_X<170) && (index_Y>601 && index_Y<676)) && LevelHandler.getLevel() == 18){
+            LevelHandler.setLevel(3); // Plaza
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0; 
+        }
+
+        if(((index_X>1041 && index_X<1152) && (index_Y<470)) && LevelHandler.getLevel() == 3){
+            LevelHandler.setLevel(20); // Pizza Parlor
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0; 
+        }
+
+        if(((index_X>680 && index_X<894) && index_Y<427) && LevelHandler.getLevel() == 20){
+            LevelHandler.setLevel(3); // Plaza
+            index_X = 785;
+            index_Y = 580;
+            velocity[0] = 0;
+            velocity[1] = 0; 
+        }
+
+        if(((index_X>696 && index_X<779)&& (index_Y<485)) && LevelHandler.getLevel()==6){
+            LevelHandler.setLevel(21); // Mine
+            index_X = 709;
+            index_Y = 560;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if(((index_X<208 && index_Y>351 && index_Y<523)) && LevelHandler.getLevel()==21){
+            LevelHandler.setLevel(6); // Mine Shack
+            index_X = 709;
+            index_Y = 560;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if((index_X>378 && index_X<474 && index_Y<381) && LevelHandler.getLevel()==8){
+            LevelHandler.setLevel(14); // Lighthouse
+            index_X = 709;
+            index_Y = 560;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if((index_X>368 && index_X<483 && index_Y>450) && LevelHandler.getLevel()==14){
+            LevelHandler.setLevel(8); // Beach
+            index_X = 709;
+            index_Y = 560;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if((index_X>990 && index_X<1044 && index_Y<350) && LevelHandler.getLevel()==9){
+            LevelHandler.setLevel(11); // Ski Lodge
+            index_X = 709;
+            index_Y = 560;
+            velocity[0] = 0;
+            velocity[1] = 0;
+        }
+        if((index_Y>539 && index_Y<647 && index_X<190) && LevelHandler.getLevel()==11){
+            LevelHandler.setLevel(9); // Ski Village
+            index_X = 709;
+            index_Y = 560;
+            velocity[0] = 0;
+            velocity[1] = 0;
         }
     }
 
@@ -107,13 +395,13 @@ public class Player {
                         image = LoadSave.getImage(9); // os do 9 ao 16 são as imagens de movimento do SUL
                     } else if (spriteNum == 2) {
                         image = LoadSave.getImage(10);
-                    } else if( spriteNum == 3){
+                    } else if (spriteNum == 3) {
                         image = LoadSave.getImage(11);
-                    } else if(spriteNum == 4){
+                    } else if (spriteNum == 4) {
                         image = LoadSave.getImage(12);
-                    } else if(spriteNum == 5){
+                    } else if (spriteNum == 5) {
                         image = LoadSave.getImage(13);
-                    } else if(spriteNum == 6){
+                    } else if (spriteNum == 6) {
                         image = LoadSave.getImage(14);
                     }
                 }
@@ -127,13 +415,13 @@ public class Player {
                         image = LoadSave.getImage(15); // os do 15 ao 21 são as imagens de movimento do NORTE
                     } else if (spriteNum == 2) {
                         image = LoadSave.getImage(16);
-                    } else if( spriteNum == 3){
+                    } else if (spriteNum == 3) {
                         image = LoadSave.getImage(17);
-                    } else if(spriteNum == 4){
+                    } else if (spriteNum == 4) {
                         image = LoadSave.getImage(18);
-                    } else if(spriteNum == 5){
+                    } else if (spriteNum == 5) {
                         image = LoadSave.getImage(19);
-                    } else if(spriteNum == 6){
+                    } else if (spriteNum == 6) {
                         image = LoadSave.getImage(20);
                     }
                 }
@@ -143,17 +431,17 @@ public class Player {
                 if (velocity[0] == 0 && velocity[1] == 0) {
                     image = LoadSave.getImage(7);
                 } else {
-                    if(spriteNum == 1){
+                    if (spriteNum == 1) {
                         image = LoadSave.getImage(45);
-                    } else if(spriteNum == 2){
+                    } else if (spriteNum == 2) {
                         image = LoadSave.getImage(46);
-                    } else if(spriteNum == 3){
+                    } else if (spriteNum == 3) {
                         image = LoadSave.getImage(47);
-                    } else if(spriteNum == 4){
+                    } else if (spriteNum == 4) {
                         image = LoadSave.getImage(48);
-                    } else if(spriteNum == 5){
+                    } else if (spriteNum == 5) {
                         image = LoadSave.getImage(49);
-                    } else if(spriteNum == 6){
+                    } else if (spriteNum == 6) {
                         image = LoadSave.getImage(50);
                     }
                 }
@@ -163,17 +451,17 @@ public class Player {
                 if (velocity[0] == 0 && velocity[1] == 0) {
                     image = LoadSave.getImage(8);
                 } else {
-                    if(spriteNum == 1){
+                    if (spriteNum == 1) {
                         image = LoadSave.getImage(51);
-                    } else if(spriteNum == 2){
+                    } else if (spriteNum == 2) {
                         image = LoadSave.getImage(52);
-                    } else if(spriteNum == 3){
+                    } else if (spriteNum == 3) {
                         image = LoadSave.getImage(53);
-                    } else if(spriteNum == 4){
+                    } else if (spriteNum == 4) {
                         image = LoadSave.getImage(54);
-                    } else if(spriteNum == 5){
+                    } else if (spriteNum == 5) {
                         image = LoadSave.getImage(55);
-                    } else if(spriteNum == 6){
+                    } else if (spriteNum == 6) {
                         image = LoadSave.getImage(56);
                     }
 
@@ -184,17 +472,17 @@ public class Player {
                 if (velocity[0] == 0 && velocity[1] == 0) {
                     image = LoadSave.getImage(3);
                 } else {
-                    if(spriteNum == 1){
+                    if (spriteNum == 1) {
                         image = LoadSave.getImage(39);
-                    } else if(spriteNum == 2){
+                    } else if (spriteNum == 2) {
                         image = LoadSave.getImage(40);
-                    } else if(spriteNum == 3){
+                    } else if (spriteNum == 3) {
                         image = LoadSave.getImage(41);
-                    } else if(spriteNum == 4){
+                    } else if (spriteNum == 4) {
                         image = LoadSave.getImage(42);
-                    } else if(spriteNum == 5){
+                    } else if (spriteNum == 5) {
                         image = LoadSave.getImage(43);
-                    } else if(spriteNum == 6){
+                    } else if (spriteNum == 6) {
                         image = LoadSave.getImage(44);
                     }
                 }
@@ -204,17 +492,17 @@ public class Player {
                 if (velocity[0] == 0 && velocity[1] == 0) {
                     image = LoadSave.getImage(4);
                 } else {
-                    if(spriteNum == 1){
+                    if (spriteNum == 1) {
                         image = LoadSave.getImage(33);
-                    } else if(spriteNum == 2){
+                    } else if (spriteNum == 2) {
                         image = LoadSave.getImage(34);
-                    } else if(spriteNum == 3){
+                    } else if (spriteNum == 3) {
                         image = LoadSave.getImage(35);
-                    } else if(spriteNum == 4){
+                    } else if (spriteNum == 4) {
                         image = LoadSave.getImage(36);
-                    } else if(spriteNum == 5){
+                    } else if (spriteNum == 5) {
                         image = LoadSave.getImage(37);
-                    } else if(spriteNum == 6){
+                    } else if (spriteNum == 6) {
                         image = LoadSave.getImage(38);
                     }
                 }
@@ -224,17 +512,17 @@ public class Player {
                 if (velocity[0] == 0 && velocity[1] == 0) {
                     image = LoadSave.getImage(5);
                 } else {
-                    if(spriteNum == 1){
+                    if (spriteNum == 1) {
                         image = LoadSave.getImage(21);
-                    } else if(spriteNum == 2){
+                    } else if (spriteNum == 2) {
                         image = LoadSave.getImage(22);
-                    } else if(spriteNum == 3){
+                    } else if (spriteNum == 3) {
                         image = LoadSave.getImage(23);
-                    } else if(spriteNum == 4){
+                    } else if (spriteNum == 4) {
                         image = LoadSave.getImage(24);
-                    } else if(spriteNum == 5){
+                    } else if (spriteNum == 5) {
                         image = LoadSave.getImage(25);
-                    } else if(spriteNum == 6){
+                    } else if (spriteNum == 6) {
                         image = LoadSave.getImage(26);
                     }
                 }
@@ -244,24 +532,24 @@ public class Player {
                 if (velocity[0] == 0 && velocity[1] == 0) {
                     image = LoadSave.getImage(6);
                 } else {
-                    if(spriteNum == 1){
+                    if (spriteNum == 1) {
                         image = LoadSave.getImage(27);
-                    } else if(spriteNum == 2){
+                    } else if (spriteNum == 2) {
                         image = LoadSave.getImage(28);
-                    } else if(spriteNum == 3){
+                    } else if (spriteNum == 3) {
                         image = LoadSave.getImage(29);
-                    } else if(spriteNum == 4){
+                    } else if (spriteNum == 4) {
                         image = LoadSave.getImage(30);
-                    } else if(spriteNum == 5){
+                    } else if (spriteNum == 5) {
                         image = LoadSave.getImage(31);
-                    } else if(spriteNum == 6){
+                    } else if (spriteNum == 6) {
                         image = LoadSave.getImage(32);
                     }
                 }
                 break;
 
         }
-        g2.drawImage(image, index_X - playerWidth/2, index_Y - playerHeight / 2, playerWidth, playerHeight, null);
+        g2.drawImage(image, index_X - playerWidth / 2, index_Y - playerHeight / 2, playerWidth, playerHeight, null);
 
     }
 
@@ -402,7 +690,6 @@ public class Player {
                 velocity[1] = playerSpeed;
             }
         }
-        System.out.println(velocity[0] + " " + velocity[1]);
         return velocity;
     }
 

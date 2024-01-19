@@ -3,27 +3,33 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
 import javax.swing.JPanel;
 
-import levels.levelHandler;
+import Tiles.TileManager;
+import levels.LevelHandler;
 
 public class GamePanel extends JPanel implements Runnable {
 
+    // FPS
     final int FPS = 60;
 
-    // screenSettings
-    final int SCREEN_WIDTH = 1400;
-    final int SCREEN_HEIGHT = 700;
+    // SCREEN SETTINGS
+    final int SCREEN_WIDTH = 1440;
+    final int SCREEN_HEIGHT = 848;
     final Dimension SCREEN_SIZE = new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT);
+    public final int tileSize = 16;
+    public final int tileCol = SCREEN_WIDTH / tileSize;
+    public final int tileRow = SCREEN_HEIGHT / tileSize;
 
     // Instanciando as classes
     KeyHandler key = new KeyHandler();
     MouseHandler mouse = new MouseHandler();
     MouseMotionHandler mouseMotion = new MouseMotionHandler();
-    Player player = new Player(700, 350, mouse, mouseMotion);
+    Player player = new Player(785, 525, mouse, mouseMotion, this);
+    LevelHandler levelHandler = new LevelHandler();
     Thread gameThread;
-    private levelHandler levelHandler = new levelHandler(this);
+    TileManager tileManager = new TileManager(this);
+    
 
     public GamePanel() {
 
@@ -78,9 +84,9 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g; // transformar essa variável em Graphics2D, que é melhor
-
-        player.draw(g2);
         levelHandler.draw(g2);
+        player.draw(g2);
+        tileManager.draw(g2);
 
         g2.dispose();
 

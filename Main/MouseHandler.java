@@ -13,6 +13,7 @@ public class MouseHandler implements MouseListener {
         isClicked = true;
         CoordX = e.getX();
         CoordY = e.getY();
+        System.out.println("X: " + CoordX + " Y: " + CoordY);
     }
 
     @Override
