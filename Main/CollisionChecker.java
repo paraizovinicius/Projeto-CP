@@ -35,18 +35,57 @@ public class CollisionChecker {
                 }
                 break;
             case "sul":
+                bottomRow = (bottomY + player.playerSpeed) / gp.tileSize;
+                tileNum1 = gp.tileManager.mapTileNum[bottomRow][leftCol];
+                tileNum2 = gp.tileManager.mapTileNum[bottomRow][rightCol];
+                if(gp.tileManager.tile[tileNum1].collision == true|| gp.tileManager.tile[tileNum2].collision == true){
+                    player.collisionOn = true;
+                }
                 break;
             case "leste":
+                rightCol = (rightX + player.playerSpeed) / gp.tileSize;
+                tileNum1 = gp.tileManager.mapTileNum[topRow][rightCol];
+                tileNum2 = gp.tileManager.mapTileNum[bottomRow][rightCol];
+                if(gp.tileManager.tile[tileNum1].collision == true|| gp.tileManager.tile[tileNum2].collision == true){
+                    player.collisionOn = true;
+                }
                 break;
             case "oeste":
+                leftCol = (leftX - player.playerSpeed) / gp.tileSize;
+                tileNum1 = gp.tileManager.mapTileNum[topRow][leftCol];
+                tileNum2 = gp.tileManager.mapTileNum[bottomRow][leftCol];
                 break;
             case "sudeste":
+                bottomRow = (bottomY + player.playerSpeed) / gp.tileSize;
+                tileNum1 = gp.tileManager.mapTileNum[bottomRow][leftCol];
+                tileNum2 = gp.tileManager.mapTileNum[bottomRow][rightCol];
+                if(gp.tileManager.tile[tileNum1].collision == true|| gp.tileManager.tile[tileNum2].collision == true){
+                    player.collisionOn = true;
+                }
                 break;
             case "sudoeste":
+                bottomRow = (bottomY + player.playerSpeed) / gp.tileSize;
+                tileNum1 = gp.tileManager.mapTileNum[bottomRow][leftCol];
+                tileNum2 = gp.tileManager.mapTileNum[bottomRow][rightCol];
+                if(gp.tileManager.tile[tileNum1].collision == true|| gp.tileManager.tile[tileNum2].collision == true){
+                    player.collisionOn = true;
+                }
                 break;
             case "nordeste":
+                topRow = (topY - player.playerSpeed) / gp.tileSize;
+                tileNum1 = gp.tileManager.mapTileNum[topRow][leftCol]; // nao entendi meu deus meu senhor me ajuda porfavor
+                tileNum2 = gp.tileManager.mapTileNum[topRow][rightCol];
+                if(gp.tileManager.tile[tileNum1].collision == true|| gp.tileManager.tile[tileNum2].collision == true){
+                    player.collisionOn = true;
+                }
                 break;
             case "noroeste":
+                topRow = (topY - player.playerSpeed) / gp.tileSize;
+                tileNum1 = gp.tileManager.mapTileNum[topRow][leftCol]; // nao entendi meu deus meu senhor me ajuda porfavor
+                tileNum2 = gp.tileManager.mapTileNum[topRow][rightCol];
+                if(gp.tileManager.tile[tileNum1].collision == true|| gp.tileManager.tile[tileNum2].collision == true){
+                    player.collisionOn = true;
+                }
                 break;
         }
 

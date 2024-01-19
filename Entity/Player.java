@@ -69,10 +69,18 @@ public class Player {
 
         // Se collision = false, o player pode se mover
         if (collisionOn == false) {
-
-            index_X += velocity[0];
-            index_Y += velocity[1];
-
+            try {
+                Thread.sleep(10);
+                index_X += velocity[0];
+                index_Y += velocity[1];
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Erro no movimento do player");
+            }
+        }
+        else{
+            velocity[0] = 0;
+            velocity[1] = 0;
         }
 
         // Função de parada
