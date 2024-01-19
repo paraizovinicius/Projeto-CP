@@ -4,14 +4,14 @@ import java.awt.Shape;
 
 public class Tiles {
     public Rectangle tile;
-    public boolean colision;
+    public boolean collision;
 
     public Tiles(int tipo) {
-        if(tipo == 0){
-            colision = true;
+        if(tipo == 0 || tipo == 2){
+            collision = false;
         }
         if(tipo == 1){
-            colision = false;
+            collision = true;
         }
     }
 }

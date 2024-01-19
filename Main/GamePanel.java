@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
+import Entity.Player;
 import Tiles.TileManager;
 import levels.LevelHandler;
 
@@ -15,9 +16,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTINGS
     final int SCREEN_WIDTH = 1440;
-    final int SCREEN_HEIGHT = 848;
+    final int SCREEN_HEIGHT = 832;
     final Dimension SCREEN_SIZE = new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT);
-    public final int tileSize = 16;
+    public final int tileSize = 32;
     public final int tileCol = SCREEN_WIDTH / tileSize;
     public final int tileRow = SCREEN_HEIGHT / tileSize;
 
@@ -29,6 +30,7 @@ public class GamePanel extends JPanel implements Runnable {
     LevelHandler levelHandler = new LevelHandler();
     Thread gameThread;
     TileManager tileManager = new TileManager(this);
+    public CollisionChecker collisionChecker = new CollisionChecker(this);
     
 
     public GamePanel() {
@@ -77,6 +79,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         player.update();
         levelHandler.update();
+        tileManager.update();
     }
 
     public void paintComponent(Graphics g) {
