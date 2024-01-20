@@ -1,6 +1,5 @@
 package Tiles;
 import java.awt.Rectangle;
-import java.awt.Shape;
 
 public class Tiles {
     public Rectangle tile;

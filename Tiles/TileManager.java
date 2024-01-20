@@ -63,8 +63,8 @@ public class TileManager {
             int tileNum = mapTileNum[row][col];
 
             if (tileNum == 0) {
-                g2.setColor(Color.red);
-            }else{g2.setColor(Color.white);}
+                g2.setColor(Color.white);
+            }else{g2.setColor(Color.red);}
 
             g2.drawRect(x, y, gp.tileSize, gp.tileSize);
             col++;

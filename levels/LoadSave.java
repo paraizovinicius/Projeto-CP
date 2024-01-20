@@ -190,67 +190,67 @@ public class LoadSave {
     public static BufferedImage getBg(int a) {
         BufferedImage image = null;
         try {
-            if (a == 57) {
+            if (a == 1) {
                 image = ImageIO.read(new File(path + "\\bg_downtown.png"));
             }
-            if (a == 58) {
+            if (a == 2) {
                 image = ImageIO.read(new File(path + "\\bg_snowfort.png"));
             }
-            if (a == 59) {
+            if (a == 3) {
                 image = ImageIO.read(new File(path + "\\bg_plaza.png"));
             }
-            if (a == 60) {
+            if (a == 4) {
                 image = ImageIO.read(new File(path + "\\bg_forest.png"));
             }
-            if (a == 61) {
+            if (a == 5) {
                 image = ImageIO.read(new File(path + "\\bg_cove.png"));
             }
-            if (a == 62) {
+            if (a == 6) {
                 image = ImageIO.read(new File(path + "\\bg_mineShack.png"));
             }
-            if (a == 63) {
+            if (a == 7) {
                 image = ImageIO.read(new File(path + "\\bg_dock.png"));
             }
-            if (a == 64) {
+            if (a == 8) {
                 image = ImageIO.read(new File(path + "\\bg_beach.png"));
             }
-            if (a == 65) {
+            if (a == 9) {
                 image = ImageIO.read(new File(path + "\\bg_skiVillage.png"));
             }
-            if (a == 66) {
+            if (a == 10) {
                 image = ImageIO.read(new File(path + "\\bg_skiHill.png"));
             }
-            if (a == 67) {
+            if (a == 11) {
                 image = ImageIO.read(new File(path + "\\bg_skiLodge.png"));
             }
-            if (a == 68) {
+            if (a == 12) {
                 image = ImageIO.read(new File(path + "\\bg_nightClub.png"));
             }
-            if (a == 69) {
+            if (a == 13) {
                 image = ImageIO.read(new File(path + "\\bg_coffeShop.png"));
             }
-            if (a == 70) {
-                image = ImageIO.read(new File(path + "\\bg_lighthouse.png"));
+            if (a == 14) {
+                image = ImageIO.read(new File(path + "\\lighthouse.png"));
             }
-            if (a == 71) {
+            if (a == 15) {
                 image = ImageIO.read(new File(path + "\\bg_beacon.png"));
             }
-            if (a == 72) {
+            if (a == 16) {
                 image = ImageIO.read(new File(path + "\\bg_giftShop.png"));
             }
-            if(a == 73){
+            if(a == 17){
                 image = ImageIO.read(new File(path + "\\bg_iceRing.png"));
             }
-            if(a == 74){
+            if(a == 18){
                 image = ImageIO.read(new File(path + "\\bg_stage.png"));
             }
-            if(a == 75){
+            if(a == 19){
                 image = ImageIO.read(new File(path + "\\bg_petShop.png"));
             }
-            if(a == 76){
+            if(a == 20){
                 image = ImageIO.read(new File(path + "\\bg_pizzaParlor.png"));
             }
-            if(a == 77){
+            if(a == 21){
                 image = ImageIO.read(new File(path + "\\bg_mine.png"));
             }
         } catch (IOException e) {
