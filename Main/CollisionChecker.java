@@ -27,7 +27,7 @@ public class CollisionChecker {
 
         switch (player.direction) {
             case "norte":
-                topRow = (topY - player.playerSpeed) / gp.tileSize;
+                topRow = (topY - player.playerSpeed+3) / gp.tileSize;
                 tileNum1 = gp.tileManager.mapTileNum[topRow][leftCol]; // nao entendi meu deus meu senhor me ajuda porfavor
                 tileNum2 = gp.tileManager.mapTileNum[topRow][rightCol];
                 if(gp.tileManager.tile[tileNum1].collision == true|| gp.tileManager.tile[tileNum2].collision == true){
@@ -35,7 +35,7 @@ public class CollisionChecker {
                 }
                 break;
             case "sul":
-                bottomRow = (bottomY + player.playerSpeed) / gp.tileSize;
+                bottomRow = (bottomY + player.playerSpeed+3) / gp.tileSize;
                 tileNum1 = gp.tileManager.mapTileNum[bottomRow][leftCol];
                 tileNum2 = gp.tileManager.mapTileNum[bottomRow][rightCol];
                 if(gp.tileManager.tile[tileNum1].collision == true|| gp.tileManager.tile[tileNum2].collision == true){
@@ -43,7 +43,7 @@ public class CollisionChecker {
                 }
                 break;
             case "leste":
-                rightCol = (rightX + player.playerSpeed) / gp.tileSize;
+                rightCol = (rightX + player.playerSpeed+3) / gp.tileSize;
                 tileNum1 = gp.tileManager.mapTileNum[topRow][rightCol];
                 tileNum2 = gp.tileManager.mapTileNum[bottomRow][rightCol];
                 if(gp.tileManager.tile[tileNum1].collision == true|| gp.tileManager.tile[tileNum2].collision == true){
@@ -51,12 +51,12 @@ public class CollisionChecker {
                 }
                 break;
             case "oeste":
-                leftCol = (leftX - player.playerSpeed) / gp.tileSize;
+                leftCol = (leftX - player.playerSpeed+3) / gp.tileSize;
                 tileNum1 = gp.tileManager.mapTileNum[topRow][leftCol];
                 tileNum2 = gp.tileManager.mapTileNum[bottomRow][leftCol];
                 break;
             case "sudeste":
-                bottomRow = (bottomY + player.playerSpeed) / gp.tileSize;
+                bottomRow = (bottomY + player.playerSpeed+3) / gp.tileSize;
                 tileNum1 = gp.tileManager.mapTileNum[bottomRow][leftCol];
                 tileNum2 = gp.tileManager.mapTileNum[bottomRow][rightCol];
                 if(gp.tileManager.tile[tileNum1].collision == true|| gp.tileManager.tile[tileNum2].collision == true){
@@ -64,7 +64,7 @@ public class CollisionChecker {
                 }
                 break;
             case "sudoeste":
-                bottomRow = (bottomY + player.playerSpeed) / gp.tileSize;
+                bottomRow = (bottomY + player.playerSpeed+3) / gp.tileSize;
                 tileNum1 = gp.tileManager.mapTileNum[bottomRow][leftCol];
                 tileNum2 = gp.tileManager.mapTileNum[bottomRow][rightCol];
                 if(gp.tileManager.tile[tileNum1].collision == true|| gp.tileManager.tile[tileNum2].collision == true){
@@ -72,7 +72,7 @@ public class CollisionChecker {
                 }
                 break;
             case "nordeste":
-                topRow = (topY - player.playerSpeed) / gp.tileSize;
+                topRow = (topY - player.playerSpeed+3) / gp.tileSize;
                 tileNum1 = gp.tileManager.mapTileNum[topRow][leftCol]; // nao entendi meu deus meu senhor me ajuda porfavor
                 tileNum2 = gp.tileManager.mapTileNum[topRow][rightCol];
                 if(gp.tileManager.tile[tileNum1].collision == true|| gp.tileManager.tile[tileNum2].collision == true){
@@ -80,7 +80,7 @@ public class CollisionChecker {
                 }
                 break;
             case "noroeste":
-                topRow = (topY - player.playerSpeed) / gp.tileSize;
+                topRow = (topY - player.playerSpeed+3) / gp.tileSize;
                 tileNum1 = gp.tileManager.mapTileNum[topRow][leftCol]; // nao entendi meu deus meu senhor me ajuda porfavor
                 tileNum2 = gp.tileManager.mapTileNum[topRow][rightCol];
                 if(gp.tileManager.tile[tileNum1].collision == true|| gp.tileManager.tile[tileNum2].collision == true){

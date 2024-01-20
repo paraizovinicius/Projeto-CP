@@ -166,7 +166,7 @@ public class Player {
             velocity[0] = 0;
             velocity[1] = 0;
         }
-        if (index_X > 1200 && LevelHandler.getLevel() == 2) {
+        if (index_X > 1327 && LevelHandler.getLevel() == 2) {
             LevelHandler.setLevel(3); // Plaza
             index_X = 709;
             index_Y = 560;
@@ -365,7 +365,7 @@ public class Player {
         }
 
         // LIGHTHOUSE - 14
-        if ((index_X > 368 && index_X < 483 && index_Y > 450) && LevelHandler.getLevel() == 14) {
+        if ((index_X > 368 && index_X < 483 && index_Y > 420) && LevelHandler.getLevel() == 14) {
             LevelHandler.setLevel(8); // Beach
             index_X = 709;
             index_Y = 560;
@@ -374,8 +374,8 @@ public class Player {
         }
         if((index_X<300 && index_Y<300 && LevelHandler.getLevel()==14)){
             LevelHandler.setLevel(15); // Beacon
-            index_X = 709;
-            index_Y = 560;
+            index_X = 392;
+            index_Y = 686;
             velocity[0] = 0;
             velocity[1] = 0;
         }
