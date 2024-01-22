@@ -62,11 +62,11 @@ public class TileManager {
         while (col < gp.tileCol && row < gp.tileRow) {
             int tileNum = mapTileNum[row][col];
 
-            if (tileNum == 0) {
+            /*if (tileNum == 0) {
                 g2.setColor(Color.white);
             }else{g2.setColor(Color.red);}
-
-            g2.drawRect(x, y, gp.tileSize, gp.tileSize);
+            */
+            //g2.drawRect(x, y, gp.tileSize, gp.tileSize);
             col++;
             x += gp.tileSize;
             if (col == gp.tileCol) {

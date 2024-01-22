@@ -189,10 +189,10 @@ public class Player {
             velocity[0] = 0;
             velocity[1] = 0;
         }
-        if (index_X > 1200 && LevelHandler.getLevel() == 3) {
+        if (index_X > 1367 && LevelHandler.getLevel() == 3) {
             LevelHandler.setLevel(4); // Forest
-            index_X = 709;
-            index_Y = 560;
+            index_X = 703;
+            index_Y = 342;
             velocity[0] = 0;
             velocity[1] = 0;
         }
@@ -241,7 +241,7 @@ public class Player {
             velocity[1] = 0;
         }
         // COVE
-        if (index_Y < 244 && LevelHandler.getLevel() == 5) {
+        if (index_Y < 325 && index_X>371 && index_X<566 && LevelHandler.getLevel() == 5) {
             LevelHandler.setLevel(4); // Forest
             index_X = 709;
             index_Y = 560;
@@ -250,7 +250,7 @@ public class Player {
         }
 
         // MINE SHACK
-        if (index_Y > 750 && LevelHandler.getLevel() == 6) {
+        if (index_Y > 735 && index_X<488 && LevelHandler.getLevel() == 6) {
             LevelHandler.setLevel(4); // Forest
             index_X = 709;
             index_Y = 560;
@@ -408,7 +408,7 @@ public class Player {
         }
 
         // STAGE - 18
-        if (((index_X < 170) && (index_Y > 601 && index_Y < 676)) && LevelHandler.getLevel() == 18) {
+        if (((index_X < 179) && (index_Y > 601 && index_Y < 676)) && LevelHandler.getLevel() == 18) {
             LevelHandler.setLevel(3); // Plaza
             index_X = 785;
             index_Y = 580;
@@ -612,7 +612,7 @@ public class Player {
 
         }
         g2.drawImage(image, index_X - playerWidth / 2, index_Y - playerHeight / 2, playerWidth, playerHeight, null);
-        g2.drawRect(playerHitbox.x, playerHitbox.y, playerHitbox.width, playerHitbox.height);
+       //g2.drawRect(playerHitbox.x, playerHitbox.y, playerHitbox.width, playerHitbox.height);
 
     }
 
