@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
+import levels.LevelHandler;
 import levels.LoadSave;
 
 public class UI {
@@ -21,10 +22,74 @@ public class UI {
             gp.gameState = gp.MAP_STATE;
             gp.mouse.isClicked = false;
         }
-        if(gp.gameState == gp.MAP_STATE && gp.mouse.CoordX >= 1135 && gp.mouse.CoordX <= 1171 && gp.mouse.CoordY >= 88 && gp.mouse.CoordY <= 128 && gp.mouse.isClicked){
-            gp.gameState = gp.NORMAL_STATE;
-            gp.mouse.isClicked = false;
+        if(gp.gameState == gp.MAP_STATE){
+            if(gp.mouse.CoordX >= 1135 && gp.mouse.CoordX <= 1171 && gp.mouse.CoordY >= 88 && gp.mouse.CoordY <= 128 && gp.mouse.isClicked){
+                gp.gameState = gp.NORMAL_STATE;
+                gp.mouse.isClicked = false;
+            } else{
+                if(gp.mouse.CoordX >= 728 && gp.mouse.CoordX <= 815 && gp.mouse.CoordY >= 414 && gp.mouse.CoordY <= 499 && gp.mouse.isClicked){
+                    LevelHandler.setLevel(2); // Snowfort
+                    gp.gameState = gp.NORMAL_STATE;
+                    gp.mouse.isClicked = false;
+                }
+                if(gp.mouse.CoordX >= 852 && gp.mouse.CoordX <= 1049 && gp.mouse.CoordY >= 404 && gp.mouse.CoordY <= 490 && gp.mouse.isClicked){
+                    LevelHandler.setLevel(3); // Plaza
+                    gp.gameState = gp.NORMAL_STATE;
+                    gp.mouse.isClicked = false;
+                }
+                if(gp.mouse.CoordX >= 663 && gp.mouse.CoordX <= 828 && gp.mouse.CoordY >= 290 && gp.mouse.CoordY <= 374 && gp.mouse.isClicked){
+                    LevelHandler.setLevel(17); // Ice Rink
+                    gp.gameState = gp.NORMAL_STATE;
+                    gp.mouse.isClicked = false;
+                }
+                if(gp.mouse.CoordX >= 899 && gp.mouse.CoordX <= 1055 && gp.mouse.CoordY >= 312 && gp.mouse.CoordY <= 368 && gp.mouse.isClicked){
+                    LevelHandler.setLevel(4); // Forest
+                    gp.gameState = gp.NORMAL_STATE;
+                    gp.mouse.isClicked = false;
+                }
+                if(gp.mouse.CoordX >= 963 && gp.mouse.CoordX <= 1053 && gp.mouse.CoordY >= 245 && gp.mouse.CoordY <= 296 && gp.mouse.isClicked){
+                    LevelHandler.setLevel(5); // Cove
+                    gp.gameState = gp.NORMAL_STATE;
+                    gp.mouse.isClicked = false;
+                }
+                if(gp.mouse.CoordX >= 728 && gp.mouse.CoordX <= 815 && gp.mouse.CoordY >= 414 && gp.mouse.CoordY <= 499 && gp.mouse.isClicked){
+                    LevelHandler.setLevel(2); // Snowfort
+                    gp.gameState = gp.NORMAL_STATE;
+                    gp.mouse.isClicked = false;
+                }
+                if(gp.mouse.CoordX >= 820 && gp.mouse.CoordX <= 903 && gp.mouse.CoordY >= 196 && gp.mouse.CoordY <= 259 && gp.mouse.isClicked){
+                    LevelHandler.setLevel(6); // Mine Shack
+                    gp.gameState = gp.NORMAL_STATE;
+                    gp.mouse.isClicked = false;
+                }
+                if(gp.mouse.CoordX >= 460 && gp.mouse.CoordX <= 599 && gp.mouse.CoordY >= 235 && gp.mouse.CoordY <= 304 && gp.mouse.isClicked){
+                    LevelHandler.setLevel(9); // Ski Village
+                    gp.gameState = gp.NORMAL_STATE;
+                    gp.mouse.isClicked = false;
+                }
+                if(gp.mouse.CoordX >= 420 && gp.mouse.CoordX <= 575 && gp.mouse.CoordY >= 147 && gp.mouse.CoordY <= 217 && gp.mouse.isClicked){
+                    LevelHandler.setLevel(10); // Ski hill
+                    gp.gameState = gp.NORMAL_STATE;
+                    gp.mouse.isClicked = false;
+                }
+                if(gp.mouse.CoordX >= 267 && gp.mouse.CoordX <= 395 && gp.mouse.CoordY >= 272 && gp.mouse.CoordY <= 396 && gp.mouse.isClicked){
+                    LevelHandler.setLevel(8); // Beach
+                    gp.gameState = gp.NORMAL_STATE;
+                    gp.mouse.isClicked = false;
+                }
+                if(gp.mouse.CoordX >= 259 && gp.mouse.CoordX <= 424 && gp.mouse.CoordY >= 474 && gp.mouse.CoordY <= 572 && gp.mouse.isClicked){
+                    LevelHandler.setLevel(7); // Dock
+                    gp.gameState = gp.NORMAL_STATE;
+                    gp.mouse.isClicked = false;
+                }
+                if(gp.mouse.CoordX >= 463 && gp.mouse.CoordX <= 687 && gp.mouse.CoordY >= 400 && gp.mouse.CoordY <= 495 && gp.mouse.isClicked){
+                    LevelHandler.setLevel(1); // TOWN
+                    gp.gameState = gp.NORMAL_STATE;
+                    gp.mouse.isClicked = false;
+                }
+            }
         }
+
     }
 
     public void draw(Graphics2D g2d){
