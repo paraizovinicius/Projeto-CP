@@ -21,7 +21,7 @@ public class Player {
 
     // Player's settings
     public int playerSpeed = 10;
-    double[] velocity = { 0, 0 };
+    public double[] velocity = { 0, 0 };
     int playerWidth = 68;
     int playerHeight = 72;
     public String direction = "sul";
@@ -39,9 +39,10 @@ public class Player {
 
     public void update() {
 
-        adjustLevel();
+        gamepanel.levelHandler.checkLevel(this);
         //System.out.println(LevelHandler.getLevel());
         adjustPlayerHitBox();
+
 
         if (velocity[0] != 0 || velocity[1] != 0) { // ajuste da boolean moving
             moving = true;
@@ -57,7 +58,7 @@ public class Player {
             // TODO: handle exception
         }
 
-        if (mouse.isClicked == true) {
+        if (mouse.isClicked == true && gamepanel.gameState == gamepanel.NORMAL_STATE) {
             direction = witchDirectionIsPlayerMoving(mouse.CoordX, mouse.CoordY);
             velocity = calculateVelocity(mouse.CoordX, mouse.CoordY, direction);
             mouse.isClicked = false;
@@ -71,7 +72,7 @@ public class Player {
         // Se collision = false, o player pode se mover
         if (collisionOn == false) {
             try {
-                Thread.sleep(10);
+                //Thread.sleep(15); // ISSO AQUI TRAVA O JOGO
                 index_X += velocity[0];
                 index_Y += velocity[1];
             } catch (Exception e) {
@@ -115,334 +116,6 @@ public class Player {
     public void adjustPlayerHitBox(){
         playerHitbox.x = index_X - playerWidth * 2 / 10;
         playerHitbox.y = index_Y + playerHeight / 4;
-    }
-
-    public void adjustLevel() {
-
-
-        // TOWN
-        if (index_X > 1255 && index_Y<550 && LevelHandler.getLevel() == 1) {
-            LevelHandler.setLevel(2); // Snowfort
-            index_X = 709;
-            index_Y = 450;
-            velocity[0] = 0;
-            velocity[1] = 0;
-
-        }
-        if (index_X < 215 && LevelHandler.getLevel() == 1) {
-            LevelHandler.setLevel(7); // Dock
-            index_X = 709;
-            index_Y = 560;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if (((index_X > 481 && index_X < 543) && (index_Y < 437)) && LevelHandler.getLevel() == 1) {
-            LevelHandler.setLevel(13); // Coffee Shop
-            index_X = 531;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if (((index_X > 606 && index_X < 691) && (index_Y < 400)) && LevelHandler.getLevel() == 1) {
-            LevelHandler.setLevel(12); // Night Club
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if (((index_X > 955 && index_X < 1004) && (index_Y < 452)) && LevelHandler.getLevel() == 1) {
-            LevelHandler.setLevel(16); // Gift Shop
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // SNOWFORT
-        if (index_X < 200 && LevelHandler.getLevel() == 2) {
-            LevelHandler.setLevel(1); // Downtown
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if (index_X > 1327 && LevelHandler.getLevel() == 2) {
-            LevelHandler.setLevel(3); // Plaza
-            index_X = 709;
-            index_Y = 560;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if (((index_X > 402 && index_X < 604) && (index_Y < 350)) && LevelHandler.getLevel() == 2) {
-            LevelHandler.setLevel(17); // Ice Rink
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // PLAZA
-        if (index_X < 200 && LevelHandler.getLevel() == 3) {
-            LevelHandler.setLevel(2); // Snowfort
-            index_X = 709;
-            index_Y = 450;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if (index_X > 1367 && LevelHandler.getLevel() == 3) {
-            LevelHandler.setLevel(4); // Forest
-            index_X = 703;
-            index_Y = 342;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if (((index_X > 288 & index_X < 371) && (index_Y < 517)) && LevelHandler.getLevel() == 3) {
-            LevelHandler.setLevel(19); // PetShop
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if ((((index_X > 653 && index_X < 739) || (index_X > 858 && index_X < 944)) && (index_Y < 448)) && LevelHandler.getLevel() == 3) {
-            LevelHandler.setLevel(18); // Stage
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if (((index_X > 1041 && index_X < 1152) && (index_Y < 470)) && LevelHandler.getLevel() == 3) {
-            LevelHandler.setLevel(20); // Pizza Parlor
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // FOREST
-        if (index_X > 1186 && index_Y > 648 && LevelHandler.getLevel() == 4) {
-            LevelHandler.setLevel(5); // Cove
-            index_X = 709;
-            index_Y = 560;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if (index_X > 1139 && index_Y < 312 && LevelHandler.getLevel() == 4) {
-            LevelHandler.setLevel(6); // Mine Shack
-            index_X = 709;
-            index_Y = 560;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if (index_X < 107 && index_Y < 293 && LevelHandler.getLevel() == 4) {
-            LevelHandler.setLevel(3); // Plaza
-            index_X = 709;
-            index_Y = 560;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        // COVE
-        if (index_Y < 325 && index_X>371 && index_X<566 && LevelHandler.getLevel() == 5) {
-            LevelHandler.setLevel(4); // Forest
-            index_X = 709;
-            index_Y = 560;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // MINE SHACK
-        if (index_Y > 735 && index_X<488 && LevelHandler.getLevel() == 6) {
-            LevelHandler.setLevel(4); // Forest
-            index_X = 709;
-            index_Y = 560;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if (((index_X > 696 && index_X < 779) && (index_Y < 485)) && LevelHandler.getLevel() == 6) {
-            LevelHandler.setLevel(21); // Mine
-            index_X = 709;
-            index_Y = 560;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // DOCK
-        if (index_X > 1200 && index_Y<363 && LevelHandler.getLevel() == 7) {
-            LevelHandler.setLevel(1); // Downtown
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if (index_X < 120 && LevelHandler.getLevel() == 7) {
-            LevelHandler.setLevel(8); // Beach
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if (index_X > 319 && index_X < 565 && index_Y < 296 && LevelHandler.getLevel() == 7) {
-            LevelHandler.setLevel(9); // Ski Village
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // BEACH
-        if (index_X > 1152 && index_Y < 426 && index_Y > 332 && LevelHandler.getLevel() == 8) {
-            LevelHandler.setLevel(7); // Dock
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if ((index_X > 378 && index_X < 474 && index_Y < 381) && LevelHandler.getLevel() == 8) {
-            LevelHandler.setLevel(14); // Lighthouse
-            index_X = 709;
-            index_Y = 560;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // SKI VILLAGE
-
-        if (index_X > 227 && index_X < 514 && index_Y > 732 && LevelHandler.getLevel() == 9) {
-            LevelHandler.setLevel(7); // Dock
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if (index_X < 385 && index_Y < 538 && LevelHandler.getLevel() == 9) {
-            LevelHandler.setLevel(10); // Ski Hill
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if ((index_X > 990 && index_X < 1044 && index_Y < 350) && LevelHandler.getLevel() == 9) {
-            LevelHandler.setLevel(11); // Ski Lodge
-            index_X = 709;
-            index_Y = 560;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // SKI HILL
-        if (((index_X > 835 && index_Y < 267) || (index_X > 762 && index_Y < 248))&& LevelHandler.getLevel() == 10) {
-            LevelHandler.setLevel(9); // Ski Village
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // SKI LODGE
-        if ((index_Y > 539 && index_Y < 647 && index_X < 190) && LevelHandler.getLevel() == 11) {
-            LevelHandler.setLevel(9); // Ski Village
-            index_X = 709;
-            index_Y = 560;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // NIGHT CLUB - 12
-        if (((index_Y > 460 && index_Y < 564) && (index_X < 210)) && LevelHandler.getLevel() == 12) {
-            LevelHandler.setLevel(1); // Downtown
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // COFFEE SHOP - 13
-        if (((index_X > 698 && index_X < 764) && (index_Y < 370)) && LevelHandler.getLevel() == 13) {
-            LevelHandler.setLevel(1); // Downtown
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // LIGHTHOUSE - 14
-        if ((index_X > 368 && index_X < 483 && index_Y > 420) && LevelHandler.getLevel() == 14) {
-            LevelHandler.setLevel(8); // Beach
-            index_X = 709;
-            index_Y = 560;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        if((index_X<300 && index_Y<300 && LevelHandler.getLevel()==14)){
-            LevelHandler.setLevel(15); // Beacon
-            index_X = 392;
-            index_Y = 686;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        // BEACON - 15
-        if(index_X>91 && index_X<232 && index_Y>540 && index_Y<665 && LevelHandler.getLevel()==15){
-            LevelHandler.setLevel(14); // Lighthouse
-            index_X = 709;
-            index_Y = 560;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-
-        // GIFT SHOP - 16
-        if (((index_X > 960 && index_X < 1110) && (index_Y < 448)) && LevelHandler.getLevel() == 16) {
-            LevelHandler.setLevel(1); // Downtown
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        
-        // ICE RINK - 17
-        if (((index_X > 693 && index_X < 766) && (index_Y < 190)) && LevelHandler.getLevel() == 17) {
-            LevelHandler.setLevel(2); // Snowfort
-            index_X = 709;
-            index_Y = 450;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // STAGE - 18
-        if (((index_X < 179) && (index_Y > 601 && index_Y < 676)) && LevelHandler.getLevel() == 18) {
-            LevelHandler.setLevel(3); // Plaza
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // PET SHOP - 19
-        if (((index_X > 608 & index_X < 939) && (index_Y < 384)) && LevelHandler.getLevel() == 19) {
-            LevelHandler.setLevel(3); // Plaza
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-        
-        // PIZZA PARLOR - 20
-        if (((index_X > 680 && index_X < 894) && index_Y < 427) && LevelHandler.getLevel() == 20) {
-            LevelHandler.setLevel(3); // Plaza
-            index_X = 785;
-            index_Y = 580;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
-        // MINE
-        if (((index_X < 208 && index_Y > 351 && index_Y < 523)) && LevelHandler.getLevel() == 21) {
-            LevelHandler.setLevel(6); // Mine Shack
-            index_X = 709;
-            index_Y = 560;
-            velocity[0] = 0;
-            velocity[1] = 0;
-        }
-
     }
 
     public void draw(Graphics2D g2) {

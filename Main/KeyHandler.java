@@ -25,11 +25,18 @@ public class KeyHandler implements KeyListener {
             sentar = true;
             System.out.println("SENTAR  ");
         }
+        if(code == KeyEvent.VK_M) {
+            mapState(code);
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    public void mapState(int code){
+        
     }
 
 }

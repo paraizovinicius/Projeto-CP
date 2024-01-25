@@ -22,16 +22,22 @@ public class GamePanel extends JPanel implements Runnable {
     public final int tileCol = SCREEN_WIDTH / tileSize;
     public final int tileRow = SCREEN_HEIGHT / tileSize;
 
+    // GAME STATES
+    public int gameState = 0;
+    public final int NORMAL_STATE = 0;
+    public final int MAP_STATE = 1;
+
     // Instanciando as classes
     KeyHandler key = new KeyHandler();
     MouseHandler mouse = new MouseHandler();
     MouseMotionHandler mouseMotion = new MouseMotionHandler();
     Player player = new Player(785, 525, mouse, mouseMotion, this);
-    LevelHandler levelHandler = new LevelHandler();
-    Thread gameThread;
+    UI ui = new UI(this);
+    public LevelHandler levelHandler = new LevelHandler(this);
     TileManager tileManager = new TileManager(this);
     public CollisionChecker collisionChecker = new CollisionChecker(this);
-    
+    Sound sound = new Sound();
+    Thread gameThread;    
 
     public GamePanel() {
 
@@ -76,10 +82,12 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-
+        
+        ui.update();
         player.update();
         levelHandler.update();
         tileManager.update();
+        
     }
 
     public void paintComponent(Graphics g) {
@@ -87,12 +95,34 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g; // transformar essa variável em Graphics2D, que é melhor
+
+        // Paint the background
         levelHandler.draw(g2);
+
+        // Paint the player
         player.draw(g2);
+
+        // Paint the tiles (ONLY TO SEE TILES FOR LEVEL CREATION)
         tileManager.draw(g2);
 
+        // Paint the Icons & Game States
+        ui.draw(g2);
+    
         g2.dispose();
 
+    }
+
+    public void playMusic(int i){
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
+    }
+    public void stopMusic(){
+        try {
+            sound.stop();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 
 }

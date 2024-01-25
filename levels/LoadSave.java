@@ -260,5 +260,22 @@ public class LoadSave {
 
     }
 
-
+    public static BufferedImage getIcon(int a){
+        BufferedImage image = null;
+        try {
+            if(a == 1){
+                image = ImageIO.read(new File(path + "\\icon_map.png"));
+            }
+            if(a == 2){
+                image = ImageIO.read(new File(path + "\\icon_map2.png"));
+            }
+            if(a == 3){
+                image = ImageIO.read(new File(path + "\\icon_CPworld.png"));
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao carregar o ícone");
+        }
+        return image;
+    }
 }
