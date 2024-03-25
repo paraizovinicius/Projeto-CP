@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 import Main.GamePanel;
 import Main.MouseHandler;
 import Main.MouseMotionHandler;
-import levels.LevelHandler;
 import levels.LoadSave;
 
 public class Player {
@@ -72,7 +71,7 @@ public class Player {
         // Se collision = false, o player pode se mover
         if (collisionOn == false) {
             try {
-                //Thread.sleep(15); // ISSO AQUI TRAVA O JOGO
+                Thread.sleep(20);
                 index_X += velocity[0];
                 index_Y += velocity[1];
             } catch (Exception e) {

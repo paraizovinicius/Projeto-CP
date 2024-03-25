@@ -58,23 +58,30 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void run() { // aqui implementaremos o game Loop (aqui nasce o conceito do tempo - FPS)
 
-        double drawInterval = 1000000000 / FPS;
-        double delta = 0;
-        long lastTime = System.nanoTime();
-        long currentTime;
+        double drawInterval = 1000000000 / FPS; // desenha a tela a cada 0.016 segundos (60 FPS)
+        double nextDrawTime = System.nanoTime() + drawInterval;
 
         while (gameThread != null) {
 
-            currentTime = System.nanoTime();
+            // UPDATE posição e vida dos characters
+            update();
 
-            delta += (currentTime - lastTime) / drawInterval;
+            // DRAW desenhar na tela com as informações atualizadas
+            repaint();
 
-            if (delta >= 1) {
-                // UPDATE posição e vida dos characters
-                update();
-                // DRAW desenhar na tela com as informações atualizadas
-                repaint();
-                delta--;
+            try {
+                double remainingTime = nextDrawTime - System.nanoTime();
+                remainingTime = remainingTime / 1000000; // transformando em milisegundos
+
+                if (remainingTime < 0) {
+                    remainingTime = 0;
+                }
+
+                Thread.sleep((long) remainingTime);
+
+                nextDrawTime = System.nanoTime() + drawInterval;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
         }
@@ -85,9 +92,8 @@ public class GamePanel extends JPanel implements Runnable {
         
         ui.update();
         player.update();
-        levelHandler.update();
         tileManager.update();
-        
+        levelHandler.update();
     }
 
     public void paintComponent(Graphics g) {
@@ -103,10 +109,10 @@ public class GamePanel extends JPanel implements Runnable {
         player.draw(g2);
 
         // Paint the tiles (ONLY TO SEE TILES FOR LEVEL CREATION)
-        tileManager.draw(g2);
+        //tileManager.draw(g2);
 
         // Paint the Icons & Game States
-        ui.draw(g2);
+        ui.draw(g2); // TA TRAVANDO O JOGO
     
         g2.dispose();
 

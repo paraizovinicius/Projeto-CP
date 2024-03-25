@@ -13,7 +13,7 @@ public class LevelHandler {
     private static GamePanel gp;
 
     public LevelHandler(GamePanel gp) {
-        this.gp = gp;
+        LevelHandler.gp = gp;
         setLevel(currentLevel); // inicializar no 1
     }
 

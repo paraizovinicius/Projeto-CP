@@ -1,5 +1,6 @@
 package levels;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -253,6 +254,9 @@ public class LoadSave {
             if(a == 21){
                 image = ImageIO.read(new File(path + "\\bg_mine.png"));
             }
+            if(a == 90){
+                image = ImageIO.read(new File(path + "\\igloo_1.png"));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -260,22 +264,33 @@ public class LoadSave {
 
     }
 
-    public static BufferedImage getIcon(int a){
+    public static Image getIcon(int a){
         BufferedImage image = null;
+        Image tmp = null;
+
         try {
             if(a == 1){
                 image = ImageIO.read(new File(path + "\\icon_map.png"));
+
+                tmp = image.getScaledInstance(image.getWidth() / 10, image.getHeight() / 10, Image.SCALE_SMOOTH);
+                
             }
             if(a == 2){
                 image = ImageIO.read(new File(path + "\\icon_map2.png"));
+
+                // Now we're resizing the image above 10 times less than its original size
+                tmp = image.getScaledInstance(image.getWidth() / 11, image.getHeight() / 11, Image.SCALE_SMOOTH);
+
             }
             if(a == 3){
                 image = ImageIO.read(new File(path + "\\icon_CPworld.png"));
+
+                tmp = image.getScaledInstance(3 * image.getWidth() / 4, 3 * image.getHeight() / 4, Image.SCALE_SMOOTH);
             }
             
         } catch (Exception e) {
             System.out.println("Erro ao carregar o ícone");
         }
-        return image;
+        return tmp;
     }
 }
